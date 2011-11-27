@@ -1,12 +1,13 @@
 h1 Index
 script(src="http://majek.github.com/sockjs-client/sockjs-latest.min.js")
 script
-  var sock = new SockJS('http://rsp.pinmonkey.com:3000/sock');
+  var sock = new SockJS(window.location.origin + '/sock');
   sock.onopen = function() {
     console.log('open');
   };
   sock.onmessage = function(message) {
     console.log('received: ' + JSON.stringify(message.data));
+    console.log('full message: ' + message);
   };
   sock.onclose = function(m) {
     console.log('closed',m.status,m.reason);
